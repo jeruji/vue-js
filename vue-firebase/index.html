@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Vue Basic</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .one {
+                color: green;
+            }
+
+            .two{
+                text-decoration: line-through;
+            }
+
+            .canvas {
+                width: 300px;
+                height: 300px;
+                margin-top: 20px;
+                background: #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Vue Basic</h1>
+        <div id="app">
+            <h2>{{ title }}</h2>
+
+            <!-- methods -->
+
+            <p>{{ greet('morning') }}</p>
+
+            <!-- data binding -->
+
+            <a v-bind:href="url">YouTube</a>
+            <div v-bind:class="classes">Classes from instance</div>
+            <input type="text" v-bind:value="name" />
+
+            <!-- event -->
+
+            <p>I earn {{ wage }} pounds per hour</p>
+            <button v-on:click="changeWage(1)">Increase Wage</button>
+            <button v-on:click="changeWage(-1)">Decrease Wage</button>
+            <button v-on:dblclick="changeWage(5)">Increase Wage by Five</button>
+            <button v-on:dblclick="changeWage(-5)">Decrease Wage by Five</button>
+            
+            <!-- event object -->
+            
+            <div class="canvas" @mousemove="logCoords">
+                {{coords.x}} , {{coords.y}} 
+            </div>
+
+            <!-- keyboard event -->
+            <input type="text" @keyup="updateName" />
+            <input type="text" @keypress="updateName" />
+
+            <!-- two way data binding -->    
+            <br /><input type="text" v-model="name" />
+
+            <!-- event modifier -->
+            <p>&nbsp;</p>
+            <button @click.alt="logMessage">alt-click-me</button>
+            <button @click.shift="logMessage">shift-click-me</button>
+            <a href="www.google.com" @click.prevent="logMessage">Google</a>
+            
+            <!-- conditional statement -->
+            <p v-if="showName">Echo</p>
+            <p><button @click="toggleName">showName: {{showName}}</button></p>
+
+            <!-- looping with v-for -->
+            <ul>
+                <li v-for="item in items">{{item}}</li>
+            </ul>
+            <div v-for="(ninja, index) in ninjas">
+                <p>{{index}}-{{ninja.name}}</p>
+                <p>Age : {{ninja.age}}</p>
+                <p>Belt : {{ninja.belt}}</p>
+            </div>
+        </div>    
+        <script src="app.js"></script>
+    </body>
+</html>
